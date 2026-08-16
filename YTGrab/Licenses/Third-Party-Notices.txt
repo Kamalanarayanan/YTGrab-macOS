@@ -1,0 +1,21 @@
+YTGrab includes these independent command-line tools:
+
+yt-dlp 2026.07.04
+Copyright yt-dlp contributors.
+The Unlicense. Source: https://github.com/yt-dlp/yt-dlp
+See yt-dlp-License.txt.
+
+Deno 2.9.5
+Copyright Deno contributors.
+MIT License. Source and license: https://github.com/denoland/deno
+See Deno-License.txt.
+
+FFmpeg and FFprobe 9.0
+Copyright FFmpeg contributors.
+GNU GPL version 3 or later for this build. Source and build scripts:
+https://git.martin-riedl.de/ffmpeg/build-script
+https://ffmpeg.org/download.html#get-sources
+See FFmpeg-GPL-3.0.txt and FFmpeg-Build-README.txt.
+
+These tools are distributed as separate executables and are invoked by YTGrab
+as child processes. Their respective licenses continue to apply to them.

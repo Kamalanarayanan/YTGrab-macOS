@@ -1,0 +1,348 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		83C6B99113FC97C8FDE04A6E /* YTGrabApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06956B2CDC8DE6220AAE61C /* YTGrabApp.swift */; };
+		2A8F5CFFD87674FB2B9862C3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC244FE3B63DFF710117B7 /* ContentView.swift */; };
+		2DCAC08F1744C24D5E877410 /* BrandViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2233BAAD8A8958572167EF /* BrandViews.swift */; };
+		1041A8BF7F24CC71EDB03686 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941BD908142F4F9F2EBE9667 /* Brand.swift */; };
+		40E8C76F567CD7BB73E88216 /* DownloadEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219ABDDCD95BCA76E7B1906E /* DownloadEngine.swift */; };
+		B034BE3FE490E677F3DE0E54 /* CommandBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AA7CD984E40DCB339B62C3 /* CommandBuilder.swift */; };
+		5148314B06C2F8D9DE440230 /* ProcessRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418668ACC292F601D2CE7F5 /* ProcessRunner.swift */; };
+		4AB359359D06D16E9B64E767 /* ToolLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45536C038A85D0977117DCCF /* ToolLocator.swift */; };
+		C28E3B592A560C32484F497E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0C8FAFE1B09544C5912233 /* Models.swift */; };
+		222F0DBFFE5EB23DCD3FD16F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B04B2273026590A440D27C9 /* Assets.xcassets */; };
+		A10000000000000000000001 /* ToolUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000011 /* ToolUpdateManager.swift */; };
+		A10000000000000000000002 /* ToolUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000012 /* ToolUpdateView.swift */; };
+		A10000000000000000000003 /* Tools in Resources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000013 /* Tools */; };
+		A10000000000000000000004 /* Third-Party-Notices.txt in Resources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000014 /* Third-Party-Notices.txt */; };
+		A10000000000000000000005 /* FFmpeg-GPL-3.0.txt in Resources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000015 /* FFmpeg-GPL-3.0.txt */; };
+		A10000000000000000000006 /* FFmpeg-Build-README.txt in Resources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000016 /* FFmpeg-Build-README.txt */; };
+		A10000000000000000000007 /* yt-dlp-License.txt in Resources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000018 /* yt-dlp-License.txt */; };
+		A10000000000000000000008 /* Deno-License.txt in Resources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000019 /* Deno-License.txt */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		85673086EF6CFD3A1F8591AF /* YTGrab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YTGrab.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F06956B2CDC8DE6220AAE61C /* YTGrabApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YTGrabApp.swift; sourceTree = "<group>"; };
+		D3CC244FE3B63DFF710117B7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6A2233BAAD8A8958572167EF /* BrandViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandViews.swift; sourceTree = "<group>"; };
+		941BD908142F4F9F2EBE9667 /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
+		219ABDDCD95BCA76E7B1906E /* DownloadEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadEngine.swift; sourceTree = "<group>"; };
+		64AA7CD984E40DCB339B62C3 /* CommandBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandBuilder.swift; sourceTree = "<group>"; };
+		1418668ACC292F601D2CE7F5 /* ProcessRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessRunner.swift; sourceTree = "<group>"; };
+		45536C038A85D0977117DCCF /* ToolLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolLocator.swift; sourceTree = "<group>"; };
+		1B0C8FAFE1B09544C5912233 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		5B04B2273026590A440D27C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5D00053A6602041FD42B9946 /* YTGrab.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YTGrab.entitlements; sourceTree = "<group>"; };
+		A10000000000000000000011 /* ToolUpdateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolUpdateManager.swift; sourceTree = "<group>"; };
+		A10000000000000000000012 /* ToolUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolUpdateView.swift; sourceTree = "<group>"; };
+		A10000000000000000000013 /* Tools */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Tools; sourceTree = "<group>"; };
+		A10000000000000000000014 /* Third-Party-Notices.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Third-Party-Notices.txt"; sourceTree = "<group>"; };
+		A10000000000000000000015 /* FFmpeg-GPL-3.0.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "FFmpeg-GPL-3.0.txt"; sourceTree = "<group>"; };
+		A10000000000000000000016 /* FFmpeg-Build-README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "FFmpeg-Build-README.txt"; sourceTree = "<group>"; };
+		A10000000000000000000018 /* yt-dlp-License.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "yt-dlp-License.txt"; sourceTree = "<group>"; };
+		A10000000000000000000019 /* Deno-License.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Deno-License.txt"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		69BE8A4D8E4D9DA4E7DB3928 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E50290A24C49A459B43487C5 = {
+			isa = PBXGroup;
+			children = (
+				69F8D45498D7E20DA99BB780 /* YTGrab */,
+				328EC33DF3954DC9B83FA285 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		69F8D45498D7E20DA99BB780 /* YTGrab */ = {
+			isa = PBXGroup;
+			children = (
+				F06956B2CDC8DE6220AAE61C /* YTGrabApp.swift */,
+				D3CC244FE3B63DFF710117B7 /* ContentView.swift */,
+				6A2233BAAD8A8958572167EF /* BrandViews.swift */,
+				941BD908142F4F9F2EBE9667 /* Brand.swift */,
+				219ABDDCD95BCA76E7B1906E /* DownloadEngine.swift */,
+				64AA7CD984E40DCB339B62C3 /* CommandBuilder.swift */,
+				1418668ACC292F601D2CE7F5 /* ProcessRunner.swift */,
+				45536C038A85D0977117DCCF /* ToolLocator.swift */,
+				A10000000000000000000011 /* ToolUpdateManager.swift */,
+				A10000000000000000000012 /* ToolUpdateView.swift */,
+				1B0C8FAFE1B09544C5912233 /* Models.swift */,
+				5B04B2273026590A440D27C9 /* Assets.xcassets */,
+				A10000000000000000000013 /* Tools */,
+				A10000000000000000000017 /* Licenses */,
+				5D00053A6602041FD42B9946 /* YTGrab.entitlements */,
+			);
+			path = YTGrab;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000017 /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000014 /* Third-Party-Notices.txt */,
+				A10000000000000000000015 /* FFmpeg-GPL-3.0.txt */,
+				A10000000000000000000016 /* FFmpeg-Build-README.txt */,
+				A10000000000000000000018 /* yt-dlp-License.txt */,
+				A10000000000000000000019 /* Deno-License.txt */,
+			);
+			path = Licenses;
+			sourceTree = "<group>";
+		};
+		328EC33DF3954DC9B83FA285 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				85673086EF6CFD3A1F8591AF /* YTGrab.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0E8A3AD980EC179856012B7E /* YTGrab */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B483F6EB73610DE752E457A0 /* Build configuration list for PBXNativeTarget "YTGrab" */;
+			buildPhases = (
+				4E57AE888889001C06A4F7E8 /* Sources */,
+				69BE8A4D8E4D9DA4E7DB3928 /* Frameworks */,
+				D6C9E8A172005E68A1DD674F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YTGrab;
+			productName = YTGrab;
+			productReference = 85673086EF6CFD3A1F8591AF /* YTGrab.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		98F54143AB4E86B28C3AFEE0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					0E8A3AD980EC179856012B7E = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 550FEBBE252641242DA80FDE /* Build configuration list for PBXProject "YTGrab" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E50290A24C49A459B43487C5;
+			productRefGroup = 328EC33DF3954DC9B83FA285 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0E8A3AD980EC179856012B7E /* YTGrab */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D6C9E8A172005E68A1DD674F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				222F0DBFFE5EB23DCD3FD16F /* Assets.xcassets in Resources */,
+				A10000000000000000000003 /* Tools in Resources */,
+				A10000000000000000000004 /* Third-Party-Notices.txt in Resources */,
+				A10000000000000000000005 /* FFmpeg-GPL-3.0.txt in Resources */,
+				A10000000000000000000006 /* FFmpeg-Build-README.txt in Resources */,
+				A10000000000000000000007 /* yt-dlp-License.txt in Resources */,
+				A10000000000000000000008 /* Deno-License.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4E57AE888889001C06A4F7E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83C6B99113FC97C8FDE04A6E /* YTGrabApp.swift in Sources */,
+				2A8F5CFFD87674FB2B9862C3 /* ContentView.swift in Sources */,
+				2DCAC08F1744C24D5E877410 /* BrandViews.swift in Sources */,
+				1041A8BF7F24CC71EDB03686 /* Brand.swift in Sources */,
+				40E8C76F567CD7BB73E88216 /* DownloadEngine.swift in Sources */,
+				B034BE3FE490E677F3DE0E54 /* CommandBuilder.swift in Sources */,
+				5148314B06C2F8D9DE440230 /* ProcessRunner.swift in Sources */,
+				4AB359359D06D16E9B64E767 /* ToolLocator.swift in Sources */,
+				A10000000000000000000001 /* ToolUpdateManager.swift in Sources */,
+				A10000000000000000000002 /* ToolUpdateView.swift in Sources */,
+				C28E3B592A560C32484F497E /* Models.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D08DD63EED508AD30D0CB0B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				SDKROOT = macosx;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		811CB99F7A296F7846C18A7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				SDKROOT = macosx;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		7082CC0B6FC1282FCEABD07A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_ENTITLEMENTS = YTGrab/YTGrab.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 3;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.video";
+				INFOPLIST_KEY_CFBundleDisplayName = YTGrab;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Kamalanarayanan, CRIT Studio. All rights reserved.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = local.ytgrab.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		639A7CA24D39909E713B47F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_ENTITLEMENTS = YTGrab/YTGrab.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 3;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.video";
+				INFOPLIST_KEY_CFBundleDisplayName = YTGrab;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Kamalanarayanan, CRIT Studio. All rights reserved.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = local.ytgrab.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		550FEBBE252641242DA80FDE /* Build configuration list for PBXProject "YTGrab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D08DD63EED508AD30D0CB0B4 /* Debug */,
+				811CB99F7A296F7846C18A7F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B483F6EB73610DE752E457A0 /* Build configuration list for PBXNativeTarget "YTGrab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7082CC0B6FC1282FCEABD07A /* Debug */,
+				639A7CA24D39909E713B47F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = 98F54143AB4E86B28C3AFEE0 /* Project object */;
+}
