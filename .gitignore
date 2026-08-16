@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+
+# Xcode user state and build output
+DerivedData/
+build/
+*.xcuserstate
+xcuserdata/
+
+# Distribution files belong in GitHub Releases
+*.app
+*.dmg
+*.pkg
+
+# Local archives and backups
+Backups/
+*.zip
+
+# Temporary files
+*.tmp
+*.log

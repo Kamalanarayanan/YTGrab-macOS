@@ -1,2 +1,6 @@
-# Auto detect text files and perform LF normalization
 * text=auto
+
+# Treat bundled executables and design assets as binary files.
+YTGrab/Tools/* -diff -merge -text
+*.png -diff -merge -text
+*.icns -diff -merge -text

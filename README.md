@@ -192,6 +192,8 @@ Download only content you own or have permission to save. You are responsible
 for following applicable laws, copyright rules and the terms of service of the
 websites you use.
 
-## Copyright
+## License
 
-Copyright © 2026 Kamalanarayanan, CRIT Studio. All rights reserved.
+YTGrab is available under the [MIT License](LICENSE). Copyright © 2026
+Kamalanarayanan, CRIT Studio. Bundled tools remain subject to their respective
+third-party licenses.
