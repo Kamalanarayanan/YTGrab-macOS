@@ -1,0 +1,43 @@
+# Embedded tool versions for YTGrab.
+#
+# Scripts/fetch-tools.sh reads this file, downloads each tool for both
+# Apple silicon and Intel, verifies it, and combines the two into one
+# universal binary in YTGrab/Tools. Change a version here, update its
+# checksum from the official release page, and rebuild.
+
+# yt-dlp: the official macOS build is already universal (arm64 + x86_64).
+# https://github.com/yt-dlp/yt-dlp/releases
+YTDLP_VERSION="2026.08.19"
+YTDLP_URL="https://github.com/yt-dlp/yt-dlp/releases/download/2026.08.19/yt-dlp_macos"
+YTDLP_SHA256="0f192b7ec147ab6288885d6351d9ab67367640029b4377576ef46dd79cf7b202"
+
+# Deno: JavaScript runtime yt-dlp needs for YouTube. One archive per arch.
+# https://github.com/denoland/deno/releases
+DENO_VERSION="2.9.7"
+DENO_ARM64_URL="https://github.com/denoland/deno/releases/download/v2.9.7/deno-aarch64-apple-darwin.zip"
+DENO_ARM64_SHA256="5cd46d6268f6f78f5d88bdc7159d20bd44cdaa4b3303474839f87ec6fe7ae25c"
+DENO_X64_URL="https://github.com/denoland/deno/releases/download/v2.9.7/deno-x86_64-apple-darwin.zip"
+DENO_X64_SHA256="95daaff11c116a52ad54785e7914c8e9c9cdcaba793c5ed929c74ca2d8e6259a"
+
+# FFmpeg and FFprobe 9.0.2: static GPL builds from https://ffmpeg.martin-riedl.de
+# (release channel), pinned to exact builds. Checksums match the server's
+# published .sha256 files.
+#
+# An empty *_SHA256 means "verify against the server's published .sha256 when
+# it has one, and print the hash". Paste the printed hash here to pin it.
+# The Intel URL lists are tried in order; evermeet.cx (Intel-only static
+# builds) is the fallback if Martin Riedl stops serving amd64.
+FFMPEG_ARM64_URL="https://ffmpeg.martin-riedl.de/download/macos/arm64/1789931890_9.0.2/ffmpeg.zip"
+FFMPEG_ARM64_SHA256="c8ed4c4e6978a03c485edbfe4e0a5dc2380f8a30bba5150531b31b094492d924"
+FFPROBE_ARM64_URL="https://ffmpeg.martin-riedl.de/download/macos/arm64/1789931890_9.0.2/ffprobe.zip"
+FFPROBE_ARM64_SHA256="fcbe839537485eaee7a7a8bc5cbc0f90d53617e80943e8a5b2e31cb851197ea6"
+
+FFMPEG_X64_URLS="https://ffmpeg.martin-riedl.de/download/macos/amd64/1789931006_9.0.2/ffmpeg.zip"
+FFMPEG_X64_SHA256="7c6b4125b191cbf773832dc51f424cf2b6bb7da43007d1e066f95909e47cacd4"
+FFPROBE_X64_URLS="https://ffmpeg.martin-riedl.de/download/macos/amd64/1789931006_9.0.2/ffprobe.zip"
+FFPROBE_X64_SHA256="2322438ed2f6319a691291b247d09c69dcaa3a982460d1f269a7e1af335cfdfd"
+
+# Unpinned fallbacks, for when a pinned build disappears:
+#   https://ffmpeg.martin-riedl.de/redirect/latest/macos/{arm64,amd64}/release/{ffmpeg,ffprobe}.zip
+#   https://evermeet.cx/ffmpeg/getrelease/zip
+#   https://evermeet.cx/ffmpeg/getrelease/ffprobe/zip

@@ -3,53 +3,86 @@ import AppKit
 
 // MARK: - About
 
-/// Keeps the studio mark and ownership details in one compact, dedicated panel.
+/// The CRIT Studio panel: who made the app and how to reach the studio.
 struct AboutView: View {
 
-    var body: some View {
-        VStack(spacing: 8) {
-            studioMark
-                .frame(width: 82, height: 82)
-                .shadow(color: Brand.accentHalo, radius: 16, y: 3)
-                .padding(.top, 18)
-
-            Text(AppInfo.name)
-                .font(.system(size: 20, weight: .bold))
-                .foregroundStyle(Brand.text)
-
-            Text("A \(AppInfo.studio) product")
-                .font(.system(size: 10, weight: .semibold))
-                .tracking(1.1)
-                .textCase(.uppercase)
-                .foregroundStyle(Brand.textMuted)
-
-            Text("Version \(AppInfo.shortVersion) (\(AppInfo.build))")
-                .font(.system(size: 11))
-                .foregroundStyle(Brand.text.opacity(0.85))
-
-            Link(AppInfo.contactEmail, destination: URL(string: "mailto:\(AppInfo.contactEmail)")!)
-                .font(.system(size: 11))
-                .foregroundStyle(Brand.accentBright)
-
-            Text(AppInfo.copyright)
-                .font(.system(size: 10))
-                .foregroundStyle(Brand.textMuted)
-                .multilineTextAlignment(.center)
-                .fixedSize(horizontal: false, vertical: true)
-                .padding(.horizontal, 18)
-                .padding(.bottom, 18)
-        }
-        .frame(width: 320)
-        .background(Brand.surface)
-        .preferredColorScheme(.dark)
+    private struct Contact: Identifiable {
+        let label: String
+        let email: String
+        var id: String { email }
     }
 
-    private var studioMark: some View {
-        Group {
-            Image("CRITLogo")
-                .resizable()
-                .interpolation(.high)
+    private let contacts = [
+        Contact(label: "Support", email: AppInfo.supportEmail),
+        Contact(label: "Say hello", email: AppInfo.helloEmail),
+        Contact(label: "Licensing", email: AppInfo.licensingEmail),
+    ]
+
+    var body: some View {
+        VStack(spacing: 0) {
+            VStack(spacing: 8) {
+                Image("CRITLogo")
+                    .resizable()
+                    .interpolation(.high)
+                    .frame(width: 76, height: 76)
+                    .shadow(color: Brand.accentHalo, radius: 16, y: 3)
+                    .padding(.bottom, 6)
+                    .accessibilityHidden(true)
+
+                Text(AppInfo.studio)
+                    .font(.system(size: 21, weight: .bold))
+                    .foregroundStyle(Brand.text)
+
+                Text("Designed and built by \(AppInfo.author)")
+                    .font(.system(size: 12))
+                    .foregroundStyle(Brand.textMuted)
+                    .multilineTextAlignment(.center)
+
+                Text("\(AppInfo.name) \(AppInfo.shortVersion) (\(AppInfo.build))")
+                    .font(.system(size: 10, weight: .semibold))
+                    .tracking(0.6)
+                    .foregroundStyle(Brand.textFaint)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 3)
+                    .background(Capsule().fill(Brand.raised))
+                    .padding(.top, 2)
+            }
+            .padding(.top, 26)
+            .padding(.bottom, 20)
+
+            Rectangle().fill(Brand.rule).frame(height: 1)
+
+            Grid(alignment: .leading, horizontalSpacing: 16, verticalSpacing: 9) {
+                ForEach(contacts) { contact in
+                    GridRow {
+                        Text(contact.label)
+                            .font(.system(size: 12))
+                            .foregroundStyle(Brand.textMuted)
+                            .gridColumnAlignment(.trailing)
+                        Link(contact.email, destination: URL(string: "mailto:\(contact.email)")!)
+                            .font(.system(size: 12, weight: .medium))
+                            .foregroundStyle(Brand.accentBright)
+                            .help("Email \(contact.email)")
+                    }
+                }
+            }
+            .padding(.vertical, 18)
+
+            Rectangle().fill(Brand.rule).frame(height: 1)
+
+            HStack(spacing: 5) {
+                Link(AppInfo.websiteName, destination: AppInfo.website)
+                    .foregroundStyle(Brand.text.opacity(0.85))
+                Text("·")
+                Text(AppInfo.copyright)
+            }
+            .font(.system(size: 11))
+            .foregroundStyle(Brand.textMuted)
+            .padding(.vertical, 14)
         }
+        .frame(width: 340)
+        .background(Brand.surface)
+        .preferredColorScheme(.dark)
     }
 }
 

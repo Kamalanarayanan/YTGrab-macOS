@@ -1,0 +1,123 @@
+name: Build
+
+on:
+  push:
+    branches: ["**"]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      draft_release:
+        description: "Attach the DMG to a draft release (visible only to repo collaborators)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  universal:
+    name: Universal app (Apple silicon + Intel)
+    runs-on: macos-15
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache tool downloads
+        uses: actions/cache@v4
+        with:
+          path: .tools-cache
+          key: tools-${{ hashFiles('Scripts/tools.lock') }}
+
+      - name: Fetch embedded tools (universal)
+        run: ./Scripts/fetch-tools.sh
+
+      - name: Build
+        run: |
+          xcodebuild -version
+          mkdir -p build
+          status=0
+          xcodebuild \
+            -project YTGrab.xcodeproj \
+            -scheme YTGrab \
+            -configuration Release \
+            -derivedDataPath build/DerivedData \
+            -destination "generic/platform=macOS" \
+            ARCHS="arm64 x86_64" \
+            ONLY_ACTIVE_ARCH=NO \
+            CODE_SIGN_IDENTITY=- \
+            YTGRAB_SKIP_TOOL_FETCH=1 \
+            build > build/xcodebuild.log 2>&1 || status=$?
+          grep -E "error:|warning:|BUILD (SUCCEEDED|FAILED)" build/xcodebuild.log | sort -u | head -200 || true
+          exit $status
+
+      - name: Verify architectures and signature
+        run: |
+          APP=build/DerivedData/Build/Products/Release/YTGrab.app
+          echo "App: $(lipo -archs "$APP/Contents/MacOS/YTGrab")"
+          lipo -archs "$APP/Contents/MacOS/YTGrab" | grep -q x86_64
+          lipo -archs "$APP/Contents/MacOS/YTGrab" | grep -q arm64
+          for tool in yt-dlp ffmpeg ffprobe deno; do
+            archs="$(lipo -archs "$APP/Contents/Resources/Tools/$tool")"
+            echo "$tool: $archs"
+            echo "$archs" | grep -q x86_64
+            echo "$archs" | grep -q arm64
+          done
+          codesign --verify --deep --strict "$APP"
+          plutil -p "$APP/Contents/Info.plist" | grep -E "LSMinimumSystemVersion|CFBundleShortVersionString"
+
+      - name: Smoke-test embedded tools
+        run: |
+          T=build/DerivedData/Build/Products/Release/YTGrab.app/Contents/Resources/Tools
+          "$T/yt-dlp" --version
+          "$T/ffmpeg" -hide_banner -version | head -1
+          "$T/ffprobe" -hide_banner -version | head -1
+          "$T/deno" --version | head -1
+          "$T/ffmpeg" -hide_banner -encoders | grep -E "videotoolbox|libx264|libx265|libmp3lame"
+          if arch -x86_64 /usr/bin/true 2>/dev/null; then
+            echo "Intel slices under Rosetta:"
+            arch -x86_64 "$T/ffmpeg" -hide_banner -version | head -1
+            arch -x86_64 "$T/deno" --version | head -1
+          fi
+
+      - name: Package DMG
+        id: package
+        run: |
+          APP=build/DerivedData/Build/Products/Release/YTGrab.app
+          VERSION="$(/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' "$APP/Contents/Info.plist")"
+          ./Scripts/make-dmg.sh "$APP" "build/YTGrab-$VERSION-Universal.dmg"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: YTGrab-Universal
+          path: build/*.dmg
+          retention-days: 14
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: build-log
+          path: build/xcodebuild.log
+          retention-days: 7
+
+      - name: Attach DMG to release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/*.dmg
+
+      # A draft release is private to collaborators and creates no tag until
+      # someone publishes it, so it is a safe way to hand over a test build.
+      - name: Attach DMG to draft release
+        if: github.event_name == 'workflow_dispatch' && inputs.draft_release
+        uses: softprops/action-gh-release@v2
+        with:
+          draft: true
+          tag_name: v${{ steps.package.outputs.version }}
+          target_commitish: ${{ github.sha }}
+          name: YTGrab ${{ steps.package.outputs.version }} (test build)
+          body: |
+            Universal build (Apple silicon + Intel) from `${{ github.ref_name }}` at ${{ github.sha }}.
+            Ad-hoc signed and not notarized: on first launch, approve it in System Settings › Privacy & Security.
+          files: build/*.dmg
