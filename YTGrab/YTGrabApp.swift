@@ -3,33 +3,50 @@ import AppKit
 
 @MainActor
 private final class AppLifecycle: NSObject, NSApplicationDelegate {
-    private var didPlaceMainWindow = false
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        placeMainWindow()
+        // Install (and thin) the built-in tools while the user is still
+        // pasting a link, so the first probe does not pay for it.
+        DispatchQueue.global(qos: .utility).async {
+            _ = try? ToolLocator.resolve()
+            LinkInspector.purgeOldProbes()
+        }
+        checkForToolUpdates()
     }
 
     func applicationDidBecomeActive(_ notification: Notification) {
-        placeMainWindow()
+        checkForToolUpdates()
     }
 
-    private func placeMainWindow(attempt: Int = 0) {
-        guard !didPlaceMainWindow else { return }
+    /// Downloads keep running with the window closed; the Dock icon brings
+    /// it back.
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        !DownloadQueue.shared.hasActiveJobs
+    }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) { [weak self] in
-            guard let self, !self.didPlaceMainWindow else { return }
+    func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
+        let queue = DownloadQueue.shared
+        guard queue.hasActiveJobs else { return .terminateNow }
 
-            guard let window = NSApp.windows.first(where: { $0.isVisible && $0.canBecomeMain }) else {
-                if attempt < 20 {
-                    self.placeMainWindow(attempt: attempt + 1)
-                }
-                return
-            }
+        let alert = NSAlert()
+        alert.messageText = "Downloads are still in progress"
+        alert.informativeText = "Quitting stops \(queue.activeCount == 1 ? "the download" : "all \(queue.activeCount) downloads"). Unfinished files are discarded."
+        alert.addButton(withTitle: "Keep Downloading")
+        alert.addButton(withTitle: "Quit")
+        guard alert.runModal() == .alertSecondButtonReturn else { return .terminateCancel }
 
-            window.setContentSize(NSSize(width: 720, height: 540))
-            window.center()
-            window.makeKeyAndOrderFront(nil)
-            self.didPlaceMainWindow = true
+        queue.cancelAll()
+        // Give the tools a moment to exit cleanly before the app goes.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+            sender.reply(toApplicationShouldTerminate: true)
+        }
+        return .terminateLater
+    }
+
+    private func checkForToolUpdates() {
+        guard !DownloadQueue.shared.hasActiveJobs else { return }
+        Task.detached(priority: .background) {
+            _ = await ToolUpdateManager.updateIfDue()
         }
     }
 }
@@ -39,28 +56,54 @@ struct YTGrabApp: App {
 
     @NSApplicationDelegateAdaptor(AppLifecycle.self) private var appLifecycle
 
+    init() {
+        AppSettings.registerDefaults()
+    }
+
     var body: some Scene {
-        WindowGroup {
+        Window(AppInfo.name, id: "main") {
             ContentView()
         }
-        .defaultSize(width: 720, height: 540)
+        .defaultSize(width: 820, height: 720)
+        .defaultPosition(.center)
         .windowResizability(.contentMinSize)
         .commands {
             CommandGroup(replacing: .appInfo) {
                 Button("About \(AppInfo.name)") {
                     AboutWindow.show()
                 }
-
                 Button("Check for Tool Updates…") {
-                    ToolUpdateWindow.show()
+                    SettingsWindow.show(.tools)
                 }
             }
 
-            CommandGroup(replacing: .newItem) { }
+            CommandGroup(replacing: .appSettings) {
+                Button("Settings…") {
+                    SettingsWindow.show()
+                }
+                .keyboardShortcut(",", modifiers: .command)
+            }
+
+            CommandGroup(replacing: .newItem) {
+                Button("Paste Link") {
+                    NotificationCenter.default.post(name: .ytgrabPasteLink, object: nil)
+                }
+                .keyboardShortcut("v", modifiers: [.command, .shift])
+
+                Button("Enter Link") {
+                    NotificationCenter.default.post(name: .ytgrabFocusLink, object: nil)
+                }
+                .keyboardShortcut("l", modifiers: .command)
+            }
 
             CommandGroup(replacing: .help) {
+                Button("Troubleshooting Guide") {
+                    if let url = URL(string: AppInfo.troubleshootingURL) {
+                        NSWorkspace.shared.open(url)
+                    }
+                }
                 Button("Embedded Tools & Licenses") {
-                    ToolUpdateWindow.show()
+                    LicenseWindow.show()
                 }
 
                 Divider()

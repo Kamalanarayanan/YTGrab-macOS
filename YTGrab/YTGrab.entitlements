@@ -3,11 +3,10 @@
 <plist version="1.0">
 <dict>
 	<!--
-	  The sandbox is off deliberately. A sandboxed app cannot spawn arbitrary
-	  binaries from /opt/homebrew/bin, and yt-dlp also needs to find ffmpeg on
-	  its own when it merges the video and audio streams. Sandboxing this
-	  properly would mean bundling both tools, which drags ffmpeg's GPL terms
-	  into the app.
+	  The sandbox is off deliberately. YTGrab installs its embedded yt-dlp,
+	  FFmpeg and Deno into Application Support, keeps yt-dlp and Deno updated
+	  there, and launches them as child processes. A sandboxed app cannot
+	  execute binaries it downloaded or wrote itself.
 	-->
 	<key>com.apple.security.app-sandbox</key>
 	<false/>

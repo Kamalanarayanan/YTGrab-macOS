@@ -1,0 +1,37 @@
+# Embedded tool versions for YTGrab.
+#
+# Scripts/fetch-tools.sh reads this file, downloads each tool for both
+# Apple silicon and Intel, verifies it, and combines the two into one
+# universal binary in YTGrab/Tools. Change a version here, update its
+# checksum from the official release page, and rebuild.
+
+# yt-dlp: the official macOS build is already universal (arm64 + x86_64).
+# https://github.com/yt-dlp/yt-dlp/releases
+YTDLP_VERSION="2026.08.19"
+YTDLP_URL="https://github.com/yt-dlp/yt-dlp/releases/download/2026.08.19/yt-dlp_macos"
+YTDLP_SHA256="0f192b7ec147ab6288885d6351d9ab67367640029b4377576ef46dd79cf7b202"
+
+# Deno: JavaScript runtime yt-dlp needs for YouTube. One archive per arch.
+# https://github.com/denoland/deno/releases
+DENO_VERSION="2.9.7"
+DENO_ARM64_URL="https://github.com/denoland/deno/releases/download/v2.9.7/deno-aarch64-apple-darwin.zip"
+DENO_ARM64_SHA256="5cd46d6268f6f78f5d88bdc7159d20bd44cdaa4b3303474839f87ec6fe7ae25c"
+DENO_X64_URL="https://github.com/denoland/deno/releases/download/v2.9.7/deno-x86_64-apple-darwin.zip"
+DENO_X64_SHA256="95daaff11c116a52ad54785e7914c8e9c9cdcaba793c5ed929c74ca2d8e6259a"
+
+# FFmpeg and FFprobe: static GPL builds.
+# Apple silicon from https://ffmpeg.martin-riedl.de (release channel).
+# Intel: Martin Riedl's last amd64 release if it is still served, otherwise
+# https://evermeet.cx/ffmpeg (Intel-only static builds).
+#
+# An empty *_SHA256 means "verify against the server's published .sha256 when
+# it has one, and print the hash". Paste the printed hash here to pin it.
+FFMPEG_ARM64_URL="https://ffmpeg.martin-riedl.de/redirect/latest/macos/arm64/release/ffmpeg.zip"
+FFMPEG_ARM64_SHA256=""
+FFPROBE_ARM64_URL="https://ffmpeg.martin-riedl.de/redirect/latest/macos/arm64/release/ffprobe.zip"
+FFPROBE_ARM64_SHA256=""
+
+FFMPEG_X64_URLS="https://ffmpeg.martin-riedl.de/redirect/latest/macos/amd64/release/ffmpeg.zip https://evermeet.cx/ffmpeg/getrelease/zip"
+FFMPEG_X64_SHA256=""
+FFPROBE_X64_URLS="https://ffmpeg.martin-riedl.de/redirect/latest/macos/amd64/release/ffprobe.zip https://evermeet.cx/ffmpeg/getrelease/ffprobe/zip"
+FFPROBE_X64_SHA256=""

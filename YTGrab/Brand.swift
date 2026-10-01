@@ -111,5 +111,7 @@ enum AppInfo {
     }
 
     /// The short capability line under the studio credit.
-    static let capabilities = "H.265 · H.264 · 4K · VideoToolbox"
+    static let capabilities = "H.265 · H.264 · 4K · VideoToolbox · Universal"
+
+    static let troubleshootingURL = "https://github.com/Kamalanarayanan/YTGrab-macOS#troubleshooting"
 }
