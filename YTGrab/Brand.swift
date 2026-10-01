@@ -103,11 +103,17 @@ enum AppInfo {
     }
 
     static let studio = "CRIT Studio"
-    static let author = "Kamalanarayanan"
-    static let contactEmail = "kamalgeek92@gmail.com"
+    static let author = "Kamalanarayanan Kamalakannan"
+
+    static let supportEmail = "support@critstudios.com"
+    static let helloEmail = "hello@critstudios.com"
+    static let licensingEmail = "licensing@critstudios.com"
+
+    static let websiteName = "critstudios.com"
+    static let website = URL(string: "https://critstudios.com")!
 
     static var copyright: String {
-        "Copyright © 2026 \(author), \(studio). All rights reserved."
+        "© 2026 \(studio)"
     }
 
     /// The short capability line under the studio credit.

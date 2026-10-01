@@ -108,10 +108,13 @@ struct YTGrabApp: App {
 
                 Divider()
 
-                Button("Email \(AppInfo.studio)") {
-                    if let url = URL(string: "mailto:\(AppInfo.contactEmail)") {
+                Button("Contact Support") {
+                    if let url = URL(string: "mailto:\(AppInfo.supportEmail)") {
                         NSWorkspace.shared.open(url)
                     }
+                }
+                Button("\(AppInfo.studio) Website") {
+                    NSWorkspace.shared.open(AppInfo.website)
                 }
             }
         }
